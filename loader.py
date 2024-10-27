@@ -1397,9 +1397,9 @@ class Loader:
 
     @staticmethod
     def get_canvas_size():
-        config.canvas_map_width = len(config.levels_list[config.current_level].array[0]) * config.tile_size
-        config.canvas_map_height = len(config.levels_list[config.current_level].array) * config.tile_size
-        config.canvas_actual_width = int(config.width / config.res) * config.res
+        config.map_width = len(config.levels_list[config.current_level].array[0]) * config.tile_size
+        config.map_height = len(config.levels_list[config.current_level].array) * config.tile_size
+        config.actual_width = int(config.width / config.res) * config.res
         config.player_map_pos = config.levels_list[config.current_level].player_pos
         config.player_pos[0] = int(
             (config.levels_list[config.current_level].player_pos[0] * config.tile_size) + config.tile_size / 2)

@@ -29,6 +29,7 @@ class Slice:
             self.darkslice.fill((0, 0, 0, config.texture_darken))
 
         if config.shade:
+            intensity = 0
             if self.distance < self.shade_intensity[0]:
                 intensity = 0
             elif self.distance < self.shade_intensity[1]:

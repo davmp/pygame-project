@@ -13,7 +13,7 @@ class HUD:
         self.ammo = 0
 
         self.sprite = pygame.image.load(os.path.join('assets', 'textures', 'hud.png')).convert()
-        self.sprite = pygame.transform.scale(self.sprite, (config.width, config.window_height - config.height))
+        self.sprite = pygame.transform.scale(self.sprite, (config.actual_width, config.window_height - config.height))
         self.rect = self.sprite.get_rect()
         self.rect.topleft = (0, config.height)
 

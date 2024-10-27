@@ -121,9 +121,9 @@ class Game:
                     self.canvas.canvas.blit(item.shade_slice, (item.xpos, item.rect.y))
 
             else:
-                if (item.new_rect.right > 0
-                        and item.new_rect.x < config.width
-                        and item.distance < (config.render * config.tile_size)):
+                if (item.new_rect.right > 0 and
+                        item.new_rect.x < config.actual_width and
+                        item.distance < (config.render * config.tile_size)):
                     item.draw(self.canvas.canvas)
 
         if config.current_gun:
@@ -214,7 +214,7 @@ class Game:
                              config.height / 2 - self.text.layout.get_height() / 2)
 
         self.map = Map(config.levels_list[config.current_level].array)
-        self.canvas = Canvas(config.width, config.height)
+        self.canvas = Canvas(config.map_width, config.map_height)
         self.player = Player(config.player_pos)
         self.raycast = Raycast(self.canvas.canvas, self.canvas.window)
         self.inventory = Inventory({'bullet': 150, 'shell': 25, 'ferromag': 50})
@@ -251,7 +251,7 @@ class Game:
             try:
                 self.music.control_music()
 
-                if config.paused and self.menu.current_type == 'main':
+                if not config.in_game and self.menu.current_type == "main":
                     self.canvas.window.fill((14, 14, 14))
                     self.menu.control()
 
@@ -274,10 +274,10 @@ class Game:
                         config.levels_list = config.tlevels_list
                         self.loader.get_canvas_size()
                         self.loader.load_new_level(self.map, self.player)
-                elif config.paused and self.menu.current_type == "game":
+                elif not config.in_game and self.menu.current_type == "game":
                     self.menu.control()
                 else:
-                    self.player.color(self.canvas)
+                    self.player.control(self.canvas)
                     config.fov = max(10, min(config.fov, 100))
 
                     if config.switch_mode:
@@ -291,6 +291,11 @@ class Game:
                     elif config.mode == 0:
                         self.map.draw(self.canvas.window)
                         self.player.draw(self.canvas.window)
+
+                        for x in config.raylines:
+                            pygame.draw.line(self.canvas.window, colors.RED, (x[0][0] / 4, x[0][1] / 4),
+                                             (x[1][0] / 4, x[1][1] / 4))
+                        config.raylines = []
 
                         for i in config.npc_list:
                             if i.rect and i.dist <= config.render * config.tile_size * 1.2:

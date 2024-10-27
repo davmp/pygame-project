@@ -10,7 +10,7 @@ fps = 31
 mode = 1
 volume = 1
 music_volume = 1
-paused = False
+in_game = False
 
 current_level_size = None
 level_transition = False
@@ -39,7 +39,7 @@ playing_tutorial = False
 """
 -> Configurações da Tela
 """
-width, height = 700, 550
+width, height = 900, 650
 actual_width = 0
 map_width = None
 map_height = None

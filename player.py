@@ -207,7 +207,7 @@ class Player:
         if config.player_health < 0:
             config.player_health = 0
 
-        if config.paused or config.player_states['invopen']:
+        if not config.in_game or config.player_states['invopen']:
             pygame.event.set_grab(False)
             self.mouse.set_visible(True)
         else:

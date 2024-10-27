@@ -41,9 +41,9 @@ class Gun:
 
         self.hit_percent = stats['hitchance']
         self.rlspeed = stats['rlspeed']
-        self.aim_pos = [config.width / 2 - aim_pos[0] * 6,
+        self.aim_pos = [config.actual_width / 2 - aim_pos[0] * 6,
                         config.height / 2 - aim_pos[1] * 6]
-        self.OG_aim_pos = [config.width / 2 - aim_pos[0] * 6,
+        self.OG_aim_pos = [config.actual_width / 2 - aim_pos[0] * 6,
                            config.height / 2 - aim_pos[1] * 6]
         self.raw_aim_pos = aim_pos
         self.mag_size = stats['magsize']
@@ -60,7 +60,7 @@ class Gun:
         else:
             self.range = config.tile_size * 0.9
 
-        self.hit_rect = pygame.Rect((config.width / 2) - (self.accuracy / 2), 0,
+        self.hit_rect = pygame.Rect((config.actual_width / 2) - (self.accuracy / 2), 0,
                                     self.accuracy, 600)
 
         self.current_img = self.aim[0]
@@ -88,7 +88,7 @@ class Gun:
 
     def update_rect(self, accuracy_added):
         self.hit_rect.width = self.hit_rect.width * accuracy_added
-        self.hit_rect.centerx = config.width / 2
+        self.hit_rect.centerx = config.actual_width / 2
 
     def aim_animation(self):
         if self.guntype != 'melee':
@@ -289,7 +289,7 @@ class Gun:
 
             if config.player_states['cspeed'] > 0 and config.next_gun == config.current_gun:
                 self.sintemp += math.pi / 14 * (25 * config.dt)
-                self.aim_pos[0] = math.sin(self.sintemp) * (config.width / swing) + \
+                self.aim_pos[0] = math.sin(self.sintemp) * (config.actual_width / swing) + \
                                   self.OG_aim_pos[0]
                 self.aim_pos[1] = math.sin(self.sintemp * 2) * wobble + (self.OG_aim_pos[1] + 10)
             elif config.player_states['cspeed'] == 0:
@@ -336,9 +336,9 @@ class Gun:
         canvas.blit(self.current_img, self.aim_pos)
 
     def re_init(self):
-        self.aim_pos = [config.width / 2 - self.raw_aim_pos[0] * 6,
+        self.aim_pos = [config.actual_width / 2 - self.raw_aim_pos[0] * 6,
                         config.height / 2 - self.raw_aim_pos[1] * 6]
-        self.OG_aim_pos = [config.width / 2 - self.raw_aim_pos[0] * 6,
+        self.OG_aim_pos = [config.actual_width / 2 - self.raw_aim_pos[0] * 6,
                            config.height / 2 - self.raw_aim_pos[1] * 6]
-        self.hit_rect = pygame.Rect((config.width / 2) - (self.accuracy / 2), 0,
+        self.hit_rect = pygame.Rect((config.actual_width / 2) - (self.accuracy / 2), 0,
                                     self.accuracy, 600)

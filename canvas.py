@@ -12,7 +12,7 @@ class Canvas:
         if config.mode == 1:
             self.width = int(config.width / config.res) * config.res
             self.height = config.height
-            self.res_width = config.width
+            self.res_width = config.actual_width
 
         self.window = pygame.display.set_mode(
             (self.width, int(self.height + (self.height * 0.15))),
@@ -33,7 +33,7 @@ class Canvas:
     def change_mode(self):
         if config.mode == 1:  # 1 - 3D / 0 - 2D
             config.mode = 0
-            self.__init__(config.width, config.height)
+            self.__init__(config.actual_width, config.height)
         else:
             config.mode = 1
             self.__init__(self.res_width, config.height)
@@ -55,6 +55,5 @@ class Canvas:
                     else:
                         self.shade[i].fill((self.rgba[0], self.rgba[1], self.rgba[2], config.shade_rgba[3]))
                     self.canvas.blit(self.shade[i], (0, self.height / 2 - self.shade[i].get_height() / 2))
-
         else:
             self.window.fill(colors.WHITE)

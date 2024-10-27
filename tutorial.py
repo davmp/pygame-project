@@ -10,7 +10,7 @@ class Controller:
         self.text = Text(
             posx=0,
             posy=0,
-            string="INTETaaakkkk!",
+            string="scartezini",
             color=colors.BLACK,
             font=config.font,
             size=26
@@ -28,7 +28,7 @@ class Controller:
         self.items1 = {
             'string': "PEGUE A ARMADURA E O KIT MÉDITO NO CHÃO",
             'tiles': [[2, 6], [3, 6], [4, 6],
-                      [2, 7], [3, 7], [4, 7], ]
+                      [2, 7], [3, 7], [4, 7]]
         }
 
         self.arrow = {
@@ -37,9 +37,9 @@ class Controller:
         }
 
         self.exits = {
-            'string': "PRESSIONE  'E' NA SAÍDA PARA TERMINAR O TUTORIAL",
+            'string': "PRESSIONE  'E' NA SAÍDA PARA FUGIR",
             'tiles': [[2, 1], [3, 1], [4, 1],
-                      [2, 2], [3, 2], [4, 2], ]
+                      [2, 2], [3, 2], [4, 2]]
         }
 
         self.second = {
@@ -89,7 +89,7 @@ class Controller:
         }
 
         self.enemy = {
-            'string': "MATA ELE!!  BOTÃO ESQUERDO PARA ATIRAR!",
+            'string': "MATE ELE!!  BOTÃO ESQUERDO PARA ATIRAR!",
             'tiles': [[2, 4], [3, 4], [4, 4], [5, 4],
                       [1, 5], [2, 5], [3, 5], [4, 5], [5, 5],
                       [1, 6], [2, 6], [3, 6], [4, 6], [5, 6],
@@ -136,7 +136,7 @@ class Controller:
 
     def draw(self, string, canvas):
         self.text.update_string(string['string'])
-        self.text.update_pos((config.width / 2) - (self.text.layout.get_width() / 2), 480)
+        self.text.update_pos((config.actual_width / 2) - (self.text.layout.get_width() / 2), 480)
         self.box = pygame.Surface((self.text.layout.get_width() + 6, self.text.layout.get_height() + 6)).convert_alpha()
         self.box.fill((255, 255, 255, 180))
         canvas.blit(self.box, (self.text.posx - 3, self.text.posy - 3))

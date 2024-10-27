@@ -11,7 +11,7 @@ class Inventory:
     def __init__(self, ammo_dict):
         self.bg = pygame.image.load(os.path.join('assets', 'textures', 'inventory.png')).convert_alpha()
         self.rect = self.bg.get_rect()
-        self.rect.center = (int(config.width / 2), int(config.height / 2))
+        self.rect.center = (int(config.actual_width / 2), int(config.height / 2))
 
         self.held_ammo = {}
         for x in ammo_dict:

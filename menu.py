@@ -9,7 +9,7 @@ import config
 import sound
 from text import Text
 
-config.paused = True
+config.in_game = False
 
 
 class Controller:
@@ -126,7 +126,7 @@ class Controller:
             if self.current_menu == 'main':
                 self.gMainMenu.draw(self.canvas)
                 if self.gMainMenu.resume_button.get_clicked() or (self.esc_pressed and not key[pygame.K_ESCAPE]):
-                    config.paused = False
+                    config.in_game = True
                     self.esc_pressed = False
                 elif self.gMainMenu.exit_button.get_clicked():
                     self.current_type = 'main'
@@ -143,7 +143,7 @@ class Menu:
             color=colors.BLACK,
             font=config.font,
             size=120)
-        self.title.update_pos((config.width / 2) - (self.title.layout.get_width() / 2) + 8, 20)
+        self.title.update_pos((config.actual_width / 2) - (self.title.layout.get_width() / 2) + 8, 20)
 
         self.background_image = None
 
@@ -151,17 +151,17 @@ class Menu:
 class MainMenu(Menu):
     def __init__(self):
         Menu.__init__(self, '')
-        self.new_button = Button((config.width / 2, 320, 200, 60), "JOGAR")
-        self.options_button = Button((config.width / 2, 390, 200, 60), "CONFIGURAÇÕES")
-        self.score_button = Button((config.width / 2, 460, 200, 60), "ESTATÍSTICAS")
-        self.credits_button = Button((config.width / 2, 530, 200, 60), "CRÉDITOS")
+        self.new_button = Button((config.actual_width / 2, 320, 200, 60), "JOGAR")
+        self.options_button = Button((config.actual_width / 2, 390, 200, 60), "CONFIGURAÇÕES")
+        self.score_button = Button((config.actual_width / 2, 460, 200, 60), "ESTATÍSTICAS")
+        self.credits_button = Button((config.actual_width / 2, 530, 200, 60), "CRÉDITOS")
 
         self.logo = pygame.image.load(os.path.join('assets', 'textures', 'logo.png')).convert_alpha()
         self.logo_rect = self.logo.get_rect()
 
         self.logo_surface = pygame.Surface(self.logo.get_size()).convert()
         self.logo_surface_rect = self.logo_surface.get_rect()
-        self.logo_surface_rect.center = (config.width / 2, 120)
+        self.logo_surface_rect.center = (config.actual_width / 2, 120)
 
         # self.background = pygame.image.load(os.path.join('assets', 'textures', 'background.png')).convert_alpha()
         # self.background_rect = self.background.get_rect()
@@ -256,17 +256,17 @@ class MainMenu(Menu):
 class NewMenu(Menu):
     def __init__(self, settings):
         Menu.__init__(self, 'NEW GAME')
-        self.new_button = Button((config.width / 2, 200, 200, 60), "NOVO JOGO")
-        self.custom_button = Button((config.width / 2, 270, 200, 60), "MAPAS")
-        self.tutorial_button = Button((config.width / 2, 325, 200, 30), "TUTORIAL")
-        self.back_button = Button((config.width / 2, 500, 200, 60), "VOLTAR")
+        self.new_button = Button((config.actual_width / 2, 200, 200, 60), "NOVO JOGO")
+        self.custom_button = Button((config.actual_width / 2, 270, 200, 60), "MAPAS")
+        self.tutorial_button = Button((config.actual_width / 2, 325, 200, 30), "TUTORIAL")
+        self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
         self.loading = Text(0, 0, "CARREGANDO...", colors.BLACK, config.font, 74)
-        self.loading.update_pos((config.width / 2) - (self.loading.layout.get_width() / 2) + 8,
+        self.loading.update_pos((config.actual_width / 2) - (self.loading.layout.get_width() / 2) + 8,
                                 (config.height / 2) - (self.loading.layout.get_height() / 2))
 
         self.nolevels = Text(0, 0, "NENHUM MAPA ENCONTRADO", colors.RED, config.font, 50)
-        self.nolevels.update_pos((config.width / 2) - (self.nolevels.layout.get_width() / 2) + 8,
+        self.nolevels.update_pos((config.actual_width / 2) - (self.nolevels.layout.get_width() / 2) + 8,
                                  (config.height / 2) - (self.nolevels.layout.get_height() / 2))
         self.timer = 0
         self.no_levels_on = False
@@ -354,20 +354,20 @@ class OptionsMenu(Menu):
         self.update_strings()
 
     def update_strings(self):
-        self.graphics_button = Button((config.width / 2, 150, 300, 30),
+        self.graphics_button = Button((config.actual_width / 2, 150, 300, 30),
                                       "GRÁFICOS: %s" % self.strings[self.graphics_index])
-        self.fov_button = Button((config.width / 2, 200, 300, 30),
+        self.fov_button = Button((config.actual_width / 2, 200, 300, 30),
                                  "FOV: %s" % self.degrees[self.fov_index])
-        self.sensitivity_button = Button((config.width / 2, 250, 300, 30),
+        self.sensitivity_button = Button((config.actual_width / 2, 250, 300, 30),
                                          "SENSIBILIDADE: %s" % self.strings[self.sens_index])
-        self.volume_button = Button((config.width / 2, 300, 300, 30),
+        self.volume_button = Button((config.actual_width / 2, 300, 300, 30),
                                     "VOLUME PRINCIPAL: %s" % self.strings[self.vol_index])
-        self.music_button = Button((config.width / 2, 350, 300, 30),
+        self.music_button = Button((config.actual_width / 2, 350, 300, 30),
                                    "VOLUME DA MÚSICA: %s" % self.music_strings[self.music_index])
-        self.back_button = Button((config.width / 2, 500, 200, 60), "VOLTAR")
+        self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
         self.restart = Text(0, 0, 'REINICIE O JOGO PARA APLICAR AS MUDANÇAS', colors.LIGHTGRAY, config.font, 20)
-        self.restart.update_pos((config.width / 2) - (self.restart.layout.get_width() / 2), 580)
+        self.restart.update_pos((config.actual_width / 2) - (self.restart.layout.get_width() / 2), 580)
 
         self.current_settings = {
             'graphics': self.strings_to_data['graphics'][self.graphics_index],
@@ -429,13 +429,13 @@ class ScoreMenu(Menu):
 
         self.area = pygame.Surface((600, 300))
         self.area_rect = self.area.get_rect()
-        self.area_rect.center = (config.width / 2, config.height / 2)
+        self.area_rect.center = (config.actual_width / 2, config.height / 2)
         self.area.fill((200, 200, 200))
 
         self.middle_area = pygame.Surface((200, 300))
         self.middle_area.fill((180, 180, 180))
 
-        self.back_button = Button((config.width / 2, 500, 200, 60), "Voltar")
+        self.back_button = Button((config.actual_width / 2, 500, 200, 60), "Voltar")
         self.score_testing = copy.copy(config.statistics)
 
         self.highlights = []
@@ -446,13 +446,12 @@ class ScoreMenu(Menu):
                 self.highlights.append(pygame.Surface((600, 30)).convert_alpha())
             self.highlights[i].fill((0, 0, 0, 20))
 
-        # High scores
-        self.best_scores = ['HIGHEST SCORES',
-                            'ENEMIES  KILLED : %s' % config.statistics['best enemies'],
-                            'DAMAGE  DEALT : %s' % config.statistics['best ddealt'],
-                            'DAMAGE  TAKEN : %s' % config.statistics['best dtaken'],
-                            'SHOTS  FIRED : %s' % config.statistics['best shots'],
-                            'LEVEL  STREAK : %s' % config.statistics['best levels']]
+        self.best_scores = ['MAIORES PONTUAÇÕES',
+                            'ENTIDADES ABATIDAS : %s' % config.statistics['best enemies'],
+                            'DANO CAUSADO : %s' % config.statistics['best ddealt'],
+                            'DANO TOMADO : %s' % config.statistics['best dtaken'],
+                            'TIROS DISPARADOS : %s' % config.statistics['best shots'],
+                            'NÍVEL STREAK : %s' % config.statistics['best levels']]
 
         self.texts = []
         self.pos = 10
@@ -465,9 +464,8 @@ class ScoreMenu(Menu):
             self.texts[i].update_pos(10, self.pos)
             self.pos += 30
 
-        # Last play scores
         self.last_scores = ['ÚLTIMA JOGADA',
-                            'INIMIGOS ABATIDOS : %s' % config.statistics['last enemies'],
+                            'ENTIDADES ABATIDAS : %s' % config.statistics['last enemies'],
                             'DANO CAUSADO : %s' % config.statistics['last ddealt'],
                             'DANO TOMADO : %s' % config.statistics['last dtaken'],
                             'TIROS DISPARADOS : %s' % config.statistics['last shots'],
@@ -487,7 +485,7 @@ class ScoreMenu(Menu):
             self.pos += 30
 
         self.all_scores = ['TODOS OS TEMPOS',
-                           'INIMIGOS ABATIDOS : %s' % config.statistics['all enemies'],
+                           'ENTIDADES ABATIDAS : %s' % config.statistics['all enemies'],
                            'DANO CAUSADO : %s' % config.statistics['all ddealt'],
                            'DANO TOMADO : %s' % config.statistics['all dtaken'],
                            'TIROS DISPARADOS : %s' % config.statistics['all shots'],
@@ -535,9 +533,8 @@ class ScoreMenu(Menu):
 class CreditsMenu(Menu):
     def __init__(self):
         Menu.__init__(self, 'CRÉDITOS')
-        self.back_button = Button((config.width / 2, 500, 200, 60), "VOLTAR")
+        self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
-        # Created by
         self.createdby = Text(
             posx=0,
             posy=0,
@@ -545,7 +542,7 @@ class CreditsMenu(Menu):
             font=config.font,
             color=colors.LIGHTGRAY,
             size=24)
-        self.createdby.update_pos((config.width / 2) - (self.createdby.layout.get_width() / 2) + 8, 130)
+        self.createdby.update_pos((config.actual_width / 2) - (self.createdby.layout.get_width() / 2) + 8, 130)
 
         self.maxwellsalmon = Text(
             posx=0,
@@ -555,28 +552,26 @@ class CreditsMenu(Menu):
             color=colors.DARKGRAY,
             size=38)
         self.maxwellsalmon.update_pos(
-            (config.width / 2) - (self.maxwellsalmon.layout.get_width() / 2) + 8, 160)
+            (config.actual_width / 2) - (self.maxwellsalmon.layout.get_width() / 2) + 8, 160)
 
-        # Music
         self.musicby = Text(
             posx=0,
             posy=0,
-            string='MUSICA POR DAVI COSTA SCARTEZINI',
+            string='MUSICA POR',
             color=colors.LIGHTGRAY,
             font=config.font,
             size=20)
-        self.musicby.update_pos((config.width / 2) - (self.musicby.layout.get_width() / 2) + 8, 210)
+        self.musicby.update_pos((config.actual_width / 2) - (self.musicby.layout.get_width() / 2) + 8, 210)
 
         self.eli = Text(
             posx=0,
             posy=0,
-            string='HUD-LUM @ SOUNDCLOUD',
+            string='DAVI COSTA SCARTEZINI',
             color=colors.DARKGRAY,
             font=config.font,
             size=30)
-        self.eli.update_pos((config.width / 2) - (self.eli.layout.get_width() / 2) + 8, 240)
+        self.eli.update_pos((config.actual_width / 2) - (self.eli.layout.get_width() / 2) + 8, 240)
 
-        # Maps
         self.contributions = Text(
             posx=0,
             posy=0,
@@ -585,7 +580,7 @@ class CreditsMenu(Menu):
             font=config.font,
             size=20)
         self.contributions.update_pos(
-            (config.width / 2) - (self.contributions.layout.get_width() / 2) + 8, 290)
+            (config.actual_width / 2) - (self.contributions.layout.get_width() / 2) + 8, 290)
 
         self.contributors = Text(
             posx=0,
@@ -595,7 +590,7 @@ class CreditsMenu(Menu):
             font=config.font,
             size=20)
         self.contributors.update_pos(
-            (config.width / 2) - (self.contributors.layout.get_width() / 2) + 8, 320)
+            (config.actual_width / 2) - (self.contributors.layout.get_width() / 2) + 8, 320)
         self.contributors2 = Text(
             posx=0,
             posy=0,
@@ -604,7 +599,7 @@ class CreditsMenu(Menu):
             font=config.font,
             size=20)
         self.contributors2.update_pos(
-            (config.width / 2) - (self.contributors2.layout.get_width() / 2) + 8, 345)
+            (config.actual_width / 2) - (self.contributors2.layout.get_width() / 2) + 8, 345)
 
         self.specialthanks = Text(
             posx=0,
@@ -614,7 +609,7 @@ class CreditsMenu(Menu):
             font=config.font,
             size=15)
         self.specialthanks.update_pos(
-            (config.width / 2) - (self.specialthanks.layout.get_width() / 2) + 8, 380)
+            (config.actual_width / 2) - (self.specialthanks.layout.get_width() / 2) + 8, 380)
 
         self.and_you = Text(
             posx=0,
@@ -623,7 +618,7 @@ class CreditsMenu(Menu):
             color=colors.GREEN,
             font=config.font,
             size=22)
-        self.and_you.update_pos((config.width / 2) - (self.and_you.layout.get_width() / 2) + 8, 410)
+        self.and_you.update_pos((config.actual_width / 2) - (self.and_you.layout.get_width() / 2) + 8, 410)
 
     def draw(self, canvas, show):
         self.back_button.draw(canvas)
@@ -645,7 +640,7 @@ class SupportSplash:
     def __init__(self):
         self.area = pygame.Surface((200, 300)).convert()
         self.rect = self.area.get_rect()
-        self.rect.topleft = config.width - 220, config.height - 280
+        self.rect.topleft = config.actual_width - 220, config.height - 280
         self.area.fill((200, 200, 200))
 
         self.title = Text(
@@ -662,7 +657,7 @@ class SupportSplash:
         self.texts = []
 
         self.pos = 30
-        self.button = Button((config.width - 120, config.height - 15, 192, 40),
+        self.button = Button((config.actual_width - 120, config.height - 15, 192, 40),
                              "ME DEIXE EM PAZ!")
 
         for i in range(len(self.pleas)):
@@ -684,10 +679,10 @@ class SupportSplash:
 class PauseMenu(Menu):
     def __init__(self):
         Menu.__init__(self, config.title.upper())
-        self.resume_button = Button((config.width / 2, 200, 200, 60), "CONTINUAR")
-        self.exit_button = Button((config.width / 2, 500, 200, 60), "SAIR")
+        self.resume_button = Button((config.actual_width / 2, 200, 200, 60), "CONTINUAR")
+        self.exit_button = Button((config.actual_width / 2, 500, 200, 60), "SAIR")
 
-        self.background = pygame.Surface((config.width, config.height)).convert_alpha()
+        self.background = pygame.Surface((config.actual_width, config.height)).convert_alpha()
         self.background.fill((100, 100, 100, 10))
 
     def draw(self, canvas):
@@ -744,5 +739,5 @@ class Button:
                 return False
         self.hover = False
         if self.rect in Button.hovered:
-            Button.hovered.remove(self.rect)
+            Button.hovered.clear()
         return False

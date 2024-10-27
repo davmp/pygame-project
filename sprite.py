@@ -57,7 +57,7 @@ class Sprite:
         if angle > 270 and thetaTemp < 90:
             yTmp = angle + (fov / 2) - thetaTemp - 360
 
-        xTmp = yTmp * config.width / fov
+        xTmp = yTmp * config.actual_width / fov
 
         sprite_height = int((self.rect.height / dist) * (100 / math.tan(math.radians(fov * 0.8))))
         if sprite_height > 2500:
@@ -76,7 +76,7 @@ class Sprite:
 
         self.new_size = pygame.transform.scale(self.texture, (sprite_width, sprite_height))
         self.new_rect = self.new_size.get_rect()
-        self.new_rect.center = (xTmp, config.width / 2)
+        self.new_rect.center = (xTmp, config.height / 2)
         if self.parent:
             self.parent.hit_rect = self.new_rect
 
