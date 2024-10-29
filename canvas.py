@@ -9,6 +9,7 @@ class Canvas:
         self.width = width
         self.height = height
         self.res_width = 0
+        self.light_positions = [(200, 200), (400, 300)]
         if config.mode == 1:
             self.width = int(config.width / config.res) * config.res
             self.height = config.height

@@ -20,13 +20,13 @@ class HUD:
         self.text = [
             Text(int(self.rect.width / 35), self.rect.y + int(self.rect.height / 2.5),
                  'ARMADURA',
-                 colors.DARKGRAY, config.font, 35),
+                 colors.DARKGRAY, 35),
             Text(int(self.rect.width / 3.4), self.rect.y + int(self.rect.height / 2.5),
                  'VIDA',
-                 colors.DARKGRAY, config.font, 35),
+                 colors.DARKGRAY, 35),
             Text(int(self.rect.width / 1.8), self.rect.y + int(self.rect.height / 2.5),
                  'MUNIÇÃO',
-                 colors.DARKGRAY, config.font, 35)
+                 colors.DARKGRAY, 35)
         ]
 
         self.arrow_spritesheet = pygame.image.load(os.path.join('assets', 'textures', 'arrows.png')).convert_alpha()
@@ -47,7 +47,6 @@ class HUD:
         self.original_arrow3 = self.arrow3
 
     def render(self, canvas):
-
         canvas.blit(self.sprite, self.rect)
         self.text[0].update_string('%s / 100' % config.player_armor)
         self.text[1].update_string('%s / 100' % config.player_health)
@@ -64,9 +63,21 @@ class HUD:
                                    self.arrow_center[1] - self.arrow.get_rect().height / 2)
         canvas.blit(self.arrow, self.arrow_rect)
 
-        # test
         self.arrow2 = pygame.transform.rotate(self.original_arrow2, config.end_angle)
         self.arrow3 = pygame.transform.rotate(self.original_arrow3, config.end_angle)
 
         canvas.blit(self.arrow2, (self.arrow_rect[0], self.arrow_rect[1] - 4))
         canvas.blit(self.arrow3, (self.arrow_rect[0], self.arrow_rect[1] - 8))
+
+        if config.ground_weapon:
+            self.ammoslot1 = pygame.Surface((191, 79)).convert_alpha()
+            self.ammoslot1_rect = self.ammoslot1.get_rect()
+            self.ammoslot1_rect.topleft = (self.rect.x + 320, self.rect.y + 33)
+            self.ammoslot1.fill((100, 100, 100, 100))
+            self.ammoslot1_text = Text(
+                posx=100,
+                posy=100,
+                string=str(config.ground_weapon),
+                color=colors.WHITE,
+                size=15
+            )

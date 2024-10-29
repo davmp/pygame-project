@@ -1,3 +1,4 @@
+import logging
 import math
 import sys
 import pygame
@@ -198,7 +199,6 @@ class Game:
             posy=0,
             string="VOCÊ FUGIU DA CASA!",
             color=colors.WHITE,
-            font=config.font,
             size=48
         )
         beta = Text(
@@ -206,7 +206,6 @@ class Game:
             posy=5,
             string=f"{config.title.upper()} V{config.version}",
             color=colors.WHITE,
-            font=config.font,
             size=48
         )
 
@@ -235,6 +234,7 @@ class Game:
 
         running = True
         clock = pygame.time.Clock()
+        logging.basicConfig(filename=os.path.join('data', 'CrashReport.log'), level=logging.WARNING)
 
         while running:
             config.zbuffer = []
@@ -311,6 +311,8 @@ class Game:
                     self.update()
             except Exception as e:
                 running = False
+                logging.warning(f"{config.title} crashou.")
+                logging.exception("Mensagem de erro: ")
 
             pygame.display.update()
             dt = clock.tick(config.fps)

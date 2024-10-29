@@ -141,7 +141,6 @@ class Menu:
             posy=0,
             string=title,
             color=colors.BLACK,
-            font=config.font,
             size=120)
         self.title.update_pos((config.actual_width / 2) - (self.title.layout.get_width() / 2) + 8, 20)
 
@@ -261,11 +260,11 @@ class NewMenu(Menu):
         self.tutorial_button = Button((config.actual_width / 2, 325, 200, 30), "TUTORIAL")
         self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
-        self.loading = Text(0, 0, "CARREGANDO...", colors.BLACK, config.font, 74)
+        self.loading = Text(0, 0, "CARREGANDO...", colors.BLACK, 74)
         self.loading.update_pos((config.actual_width / 2) - (self.loading.layout.get_width() / 2) + 8,
                                 (config.height / 2) - (self.loading.layout.get_height() / 2))
 
-        self.nolevels = Text(0, 0, "NENHUM MAPA ENCONTRADO", colors.RED, config.font, 50)
+        self.nolevels = Text(0, 0, "NENHUM MAPA ENCONTRADO", colors.RED, 50)
         self.nolevels.update_pos((config.actual_width / 2) - (self.nolevels.layout.get_width() / 2) + 8,
                                  (config.height / 2) - (self.nolevels.layout.get_height() / 2))
         self.timer = 0
@@ -366,7 +365,7 @@ class OptionsMenu(Menu):
                                    "VOLUME DA MÚSICA: %s" % self.music_strings[self.music_index])
         self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
-        self.restart = Text(0, 0, 'REINICIE O JOGO PARA APLICAR AS MUDANÇAS', colors.LIGHTGRAY, config.font, 20)
+        self.restart = Text(0, 0, 'REINICIE O JOGO PARA APLICAR AS MUDANÇAS', colors.LIGHTGRAY, 20)
         self.restart.update_pos((config.actual_width / 2) - (self.restart.layout.get_width() / 2), 580)
 
         self.current_settings = {
@@ -458,9 +457,9 @@ class ScoreMenu(Menu):
 
         for i in range(len(self.best_scores)):
             if i == 0:
-                self.texts.append(Text(0, 0, self.best_scores[i], colors.DARKGRAY, config.font, 18))
+                self.texts.append(Text(0, 0, self.best_scores[i], colors.DARKGRAY, 18))
             else:
-                self.texts.append(Text(0, 0, self.best_scores[i], colors.WHITE, config.font, 18))
+                self.texts.append(Text(0, 0, self.best_scores[i], colors.WHITE, 18))
             self.texts[i].update_pos(10, self.pos)
             self.pos += 30
 
@@ -475,12 +474,12 @@ class ScoreMenu(Menu):
 
         for i in range(len(self.last_scores)):
             if i == 0:
-                self.last_texts.append(Text(0, 0, self.last_scores[i], colors.DARKGRAY, config.font, 18))
+                self.last_texts.append(Text(0, 0, self.last_scores[i], colors.DARKGRAY, 18))
             else:
                 if self.last_scores[i] == self.best_scores[i] and self.last_scores[i].find(' 0') == -1:
-                    self.last_texts.append(Text(0, 0, self.last_scores[i], colors.GRAY, config.font, 18))
+                    self.last_texts.append(Text(0, 0, self.last_scores[i], colors.GRAY, 18))
                 else:
-                    self.last_texts.append(Text(0, 0, self.last_scores[i], colors.WHITE, config.font, 18))
+                    self.last_texts.append(Text(0, 0, self.last_scores[i], colors.WHITE, 18))
             self.last_texts[i].update_pos(210, self.pos)
             self.pos += 30
 
@@ -496,9 +495,9 @@ class ScoreMenu(Menu):
 
         for i in range(len(self.all_scores)):
             if i == 0:
-                self.all_texts.append(Text(0, 0, self.all_scores[i], colors.DARKGRAY, config.font, 18))
+                self.all_texts.append(Text(0, 0, self.all_scores[i], colors.DARKGRAY, 18))
             else:
-                self.all_texts.append(Text(0, 0, self.all_scores[i], colors.WHITE, config.font, 18))
+                self.all_texts.append(Text(0, 0, self.all_scores[i], colors.WHITE, 18))
             self.all_texts[i].update_pos(410, self.pos)
             self.pos += 30
 
@@ -661,7 +660,7 @@ class SupportSplash:
                              "ME DEIXE EM PAZ!")
 
         for i in range(len(self.pleas)):
-            self.texts.append(Text(0, 0, self.pleas[i], colors.WHITE, config.font, 15))
+            self.texts.append(Text(0, 0, self.pleas[i], colors.WHITE, 15))
             self.texts[i].update_pos((self.rect.width / 2) - (self.texts[i].layout.get_width() / 2) + 2, self.pos)
             self.pos += 17
 
@@ -702,7 +701,7 @@ class Button:
         self.clicked = False
         self.hover = False
 
-        self.text = Text(0, 0, text, colors.WHITE, config.font, 24)
+        self.text = Text(0, 0, text, colors.WHITE, 24)
         self.text.update_pos(xywh[0] - self.text.layout.get_width() / 2,
                              xywh[1] - (self.text.layout.get_height() / 2) + 2)
 

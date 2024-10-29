@@ -20,7 +20,6 @@ class Inventory:
         config.held_ammo = self.held_ammo
         config.max_ammo = ammo_dict
 
-        # Menu
         self.menu = pygame.Surface((160, 220)).convert()
         self.menu_rect = self.menu.get_rect()
         self.menudraw = False
@@ -113,17 +112,17 @@ class Inventory:
         self.timer = 0
         self.closing = False
         self.text = [
-            Text(0, 0, 'NOME', colors.WHITE, config.font, 18),
-            Text(0, 0, 'DANO: --', colors.LIGHTGRAY, config.font, 15),
-            Text(0, 0, 'TAMANHO DO PENTE: --', colors.LIGHTGRAY, config.font, 15),
-            Text(0, 0, 'TAXA DE FOGO: --', colors.LIGHTGRAY, config.font, 15),
-            Text(0, 0, 'MUNIÇÃO: --', colors.LIGHTGRAY, config.font, 15),
-            Text(0, 0, 'SOLTAR', colors.WHITE, config.font, 18)
+            Text(0, 0, 'NOME', colors.WHITE, 18),
+            Text(0, 0, 'DANO: --', colors.LIGHTGRAY, 15),
+            Text(0, 0, 'TAMANHO DO PENTE: --', colors.LIGHTGRAY, 15),
+            Text(0, 0, 'TAXA DE FOGO: --', colors.LIGHTGRAY, 15),
+            Text(0, 0, 'MUNIÇÃO: --', colors.LIGHTGRAY, 15),
+            Text(0, 0, 'SOLTAR', colors.WHITE, 18),
         ]
 
-        self.ammotext = [Text(480, 116, '-- / --', colors.DARKGRAY, config.font, 24),
-                         Text(480, 212, '-- / --', colors.DARKGRAY, config.font, 24),
-                         Text(480, 308, '-- / --', colors.DARKGRAY, config.font, 24)]
+        self.ammotext = [Text(480, 116, '-- / --', colors.DARKGRAY, 24),
+                         Text(480, 212, '-- / --', colors.DARKGRAY, 24),
+                         Text(480, 308, '-- / --', colors.DARKGRAY, 24)]
 
     def draw(self, canvas):
         canvas.blit(self.bg, self.rect)
@@ -243,7 +242,6 @@ class Inventory:
         if self.selected != 'ground':
             self.menu_rect.topleft = self.mousepos
 
-            # Draw menu
             i = 0
             for menu in self.submenus:
                 if i == 0:
@@ -253,20 +251,14 @@ class Inventory:
                 canvas.blit(menu, self.submenu_rects[i])
                 i += 1
 
-            # Update weapon stats  -  updates strings, even though it is not needed. Might want to change later, if needed.
             if config.inventory[self.selected]:
                 self.text[0].update_string('%s' % config.inventory[self.selected].name)
-                self.text[1].update_string('DAMAGE            : %s' % config.inventory[self.selected].dmg)
-                self.text[2].update_string('SPREAD              : %s' % config.inventory[self.selected].accuracy)
-                self.text[3].update_string('ACCURACY    : %s / 100' % config.inventory[self.selected].hit_percent)
-                self.text[4].update_string('RANGE                 : %s' % config.inventory[self.selected].range)
-                self.text[5].update_string('MAG SIZE      : %s' % config.inventory[self.selected].mag_size)
-                self.text[6].update_string('REL TIME      : %s' % config.inventory[self.selected].rlspeed)
-                self.text[7].update_string('FIR RATE      : %s' % config.inventory[self.selected].firerate)
-                self.text[8].update_string('AMMO TYP  : %s' % config.inventory[self.selected].ammo_type)
-                self.text[9].update_string('DROP')
+                self.text[1].update_string('DANO            : %s' % config.inventory[self.selected].dmg)
+                self.text[5].update_string('TAMANHO DO PENTE      : %s' % config.inventory[self.selected].mag_size)
+                self.text[7].update_string('TAXA DE FOGO      : %s' % config.inventory[self.selected].firerate)
+                self.text[8].update_string('MUNIÇÃO: %s' % config.inventory[self.selected].ammo_type)
+                self.text[9].update_string('SOLTAR')
 
-                # Update text
             x = 0
             for string in self.text:
                 if x == 0:
@@ -281,7 +273,6 @@ class Inventory:
         else:
             self.menu_rect.bottomleft = self.mousepos
 
-            # Draw menu
             i = 0
             for menu in self.submenus:
                 if i == 0:
@@ -292,25 +283,20 @@ class Inventory:
                 canvas.blit(menu, self.submenu_rects[i])
                 i += 1
 
-            self.text[0].update_string('%s' % config.ground_weapon.name)
-            self.text[1].update_string(
-                'DAMAGE            : %s   %s' % (config.ground_weapon.dmg, self.compare_weapons('dmg')))
-            self.text[2].update_string(
-                'SPREAD              : %s   %s' % (config.ground_weapon.accuracy, self.compare_weapons('spr')))
-            self.text[3].update_string(
-                'ACCURACY    : %s / 100   %s' % (config.ground_weapon.hit_percent, self.compare_weapons('acc')))
-            self.text[4].update_string(
-                'RANGE                 : %s   %s' % (config.ground_weapon.range, self.compare_weapons('ran')))
-            self.text[5].update_string(
-                'MAG SIZE      : %s   %s' % (config.ground_weapon.mag_size, self.compare_weapons('mag')))
-            self.text[6].update_string(
-                'REL TIME      : %s   %s' % (config.ground_weapon.rlspeed, self.compare_weapons('rel')))
-            self.text[7].update_string(
-                'FIR RATE      : %s   %s' % (config.ground_weapon.firerate, self.compare_weapons('fir')))
-            self.text[8].update_string('AMMO TYP  : %s' % config.ground_weapon.ammo_type)
-            self.text[9].update_string('SWAP')
+                self.text[0].update_string('%s' % config.inventory[self.selected].name)
+                self.text[1].update_string('DANO            : %s' % config.inventory[self.selected].dmg)
+                self.text[5].update_string('TAMANHO DO PENTE      : %s' % config.inventory[self.selected].mag_size)
+                self.text[7].update_string('TAXA DE FOGO      : %s' % config.inventory[self.selected].firerate)
+                self.text[8].update_string('MUNIÇÃO: %s' % config.inventory[self.selected].ammo_type)
+                self.text[9].update_string('SOLTAR')
 
-            # Update text
+            self.text[0].update_string('%s' % config.ground_weapon.name)
+            self.text[1].update_string('DANO            : %s   %s' % (config.ground_weapon.dmg, self.compare_weapons('dmg')))
+            self.text[5].update_string('TAMANHO DO PENTE      : %s   %s' % (config.ground_weapon.mag_size, self.compare_weapons('mag')))
+            self.text[7].update_string('TAXA DE FOGO      : %s   %s' % (config.ground_weapon.firerate, self.compare_weapons('fir')))
+            self.text[8].update_string('MUNIÇÃO  : %s' % config.ground_weapon.ammo_type)
+            self.text[9].update_string('TROCAR')
+
             x = 0
             for string in self.text:
                 if x == 0:
@@ -322,12 +308,10 @@ class Inventory:
                 string.draw(canvas)
                 x += 1
 
-        # Drop weapon
         if self.submenu_rects[-1].collidepoint(pygame.mouse.get_pos()):
             self.submenus[-1].fill((45, 45, 45))
             if pygame.mouse.get_pressed()[0] and self.timer >= 0.5:
                 self.timer = 0
-                # Find a place to drop item
                 if [x for x in config.all_tiles if
                     x.map_pos == [config.player_map_pos[0] + 1, config.player_map_pos[1]] and not
                     config.tile_solid[x.ID]] and not [x for x in config.items if

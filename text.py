@@ -1,10 +1,12 @@
 import pygame
 
+import config
+
 pygame.font.init()
 
 
 class Text:
-    def __init__(self, posx, posy, string, color, font, size):
+    def __init__(self, posx, posy, string, color, size, font=config.font):
         self.posx = posx
         self.posy = posy
         self.string = string

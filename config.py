@@ -174,7 +174,7 @@ all_sprites = []
 """
 -> Configurações do Jogador
 """
-player_speed = 256
+player_speed = 128
 sensitivity = 0.25
 player_angle = 270
 og_player_health = 25
@@ -222,6 +222,7 @@ next_gun = None
 prev_gun = None
 gun_list = []
 ground_weapon = None
+"graphics"
 
 
 """

@@ -65,7 +65,6 @@ class PathFinder:
                 closedlist[current_point] = openlist[current_point]
                 del openlist[current_point]
 
-                # Find adjacent nodes
                 adjacent = []
 
                 adj_up = [x for x in config.all_tiles if
@@ -86,9 +85,7 @@ class PathFinder:
                 if adj_left:
                     adjacent.append(adj_left[0])
 
-                # Add adjecent nodes to openlist if they are not in closedlist and are not solid
                 for adj in adjacent:
-
                     if (adj.type == 'hdoor' or adj.type == 'vdoor' or not config.tile_solid[
                         adj.ID]) and adj not in closedlist:
                         if (adj in openlist and openlist[adj][0] > closedlist[current_point][
@@ -439,7 +436,6 @@ class Npc:
             if self.face >= 360:
                 self.face -= 360
             self.render()
-
         elif self.health <= 0 and not self.dead:
             self.animate('dying')
             self.render()
@@ -768,7 +764,6 @@ class Npc:
             self.move()
         else:
             if self.atcktype == 'melee':
-                # Move close to player and keep attacking
                 if self.dist <= config.tile_size * 0.7:
                     self.path = []
                     self.moving = False
@@ -777,7 +772,6 @@ class Npc:
                             self.attacking = True
                             self.timer = 0
                     else:
-                        # Make the NPC not flinch when attacking
                         if self.hurting:
                             if random.randint(0, 2) != 2 or self.attacking:
                                 self.animate('attacking')
@@ -790,7 +784,7 @@ class Npc:
                 else:
                     if self.dist > config.tile_size * 0.7 and self.path == []:
                         self.path_progress = 0
-                        self.path = self.path.pathfind(self.map_pos, config.player_map_pos)
+                        self.path = self.pathfinder.pathfind(self.map_pos, config.player_map_pos)
 
                     elif self.path:
                         try:
@@ -808,7 +802,6 @@ class Npc:
                             pass
 
             elif self.atcktype == 'hitscan':
-                # Move somewhat close to player and change position after attacking
                 if self.dist <= config.tile_size * self.range and (self.dist >= config.tile_size * 1.5 or (
                         config.current_gun and config.current_gun.guntype == 'melee')) and not self.attack_move:
                     self.path = []
@@ -855,7 +848,7 @@ class Npc:
                     if not self.attack_move:
                         if self.dist >= config.tile_size * 2.5 and self.path == []:
                             self.path_progress = 0
-                            self.path = self.path.pathfind(self.map_pos, config.player_map_pos)
+                            self.path = self.pathfinder.pathfind(self.map_pos, config.player_map_pos)
 
                         elif self.path:
                             try:
@@ -978,4 +971,4 @@ class Npc:
             texture = 'ferromag.png'
         else:
             print("Error: No texture with name ", drop)
-        config.items.append(item.Item(self.map_pos, os.path.join('graphics', 'items', texture), drop, effect))
+        config.items.append(item.Item(self.map_pos, os.path.join('assets', 'textures', 'items', texture), drop, effect))

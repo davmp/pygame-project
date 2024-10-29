@@ -29,7 +29,6 @@ class Slice:
             self.darkslice.fill((0, 0, 0, config.texture_darken))
 
         if config.shade:
-            intensity = 0
             if self.distance < self.shade_intensity[0]:
                 intensity = 0
             elif self.distance < self.shade_intensity[1]:
@@ -301,7 +300,6 @@ class Raycast:
         else:
             vh = 'h'
 
-        # Mode
         self.control(end_pos, ray_number, tile_len, player_rect, texture, offset, current_tile, vh)
 
     def control(self, end_pos, ray_number, tile_len, player_rect, texture, offset, current_tile, vh):
