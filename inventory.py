@@ -254,10 +254,10 @@ class Inventory:
             if config.inventory[self.selected]:
                 self.text[0].update_string('%s' % config.inventory[self.selected].name)
                 self.text[1].update_string('DANO            : %s' % config.inventory[self.selected].dmg)
-                self.text[5].update_string('TAMANHO DO PENTE      : %s' % config.inventory[self.selected].mag_size)
-                self.text[7].update_string('TAXA DE FOGO      : %s' % config.inventory[self.selected].firerate)
-                self.text[8].update_string('MUNIÇÃO: %s' % config.inventory[self.selected].ammo_type)
-                self.text[9].update_string('SOLTAR')
+                self.text[2].update_string('TAMANHO DO PENTE      : %s' % config.inventory[self.selected].mag_size)
+                self.text[3].update_string('TAXA DE FOGO      : %s' % config.inventory[self.selected].firerate)
+                self.text[4].update_string('MUNIÇÃO: %s' % config.inventory[self.selected].ammo_type)
+                self.text[5].update_string('SOLTAR')
 
             x = 0
             for string in self.text:
@@ -285,17 +285,17 @@ class Inventory:
 
                 self.text[0].update_string('%s' % config.inventory[self.selected].name)
                 self.text[1].update_string('DANO            : %s' % config.inventory[self.selected].dmg)
-                self.text[5].update_string('TAMANHO DO PENTE      : %s' % config.inventory[self.selected].mag_size)
-                self.text[7].update_string('TAXA DE FOGO      : %s' % config.inventory[self.selected].firerate)
-                self.text[8].update_string('MUNIÇÃO: %s' % config.inventory[self.selected].ammo_type)
-                self.text[9].update_string('SOLTAR')
+                self.text[2].update_string('TAMANHO DO PENTE      : %s' % config.inventory[self.selected].mag_size)
+                self.text[3].update_string('TAXA DE FOGO      : %s' % config.inventory[self.selected].firerate)
+                self.text[4].update_string('MUNIÇÃO: %s' % config.inventory[self.selected].ammo_type)
+                self.text[5].update_string('SOLTAR')
 
             self.text[0].update_string('%s' % config.ground_weapon.name)
             self.text[1].update_string('DANO            : %s   %s' % (config.ground_weapon.dmg, self.compare_weapons('dmg')))
-            self.text[5].update_string('TAMANHO DO PENTE      : %s   %s' % (config.ground_weapon.mag_size, self.compare_weapons('mag')))
-            self.text[7].update_string('TAXA DE FOGO      : %s   %s' % (config.ground_weapon.firerate, self.compare_weapons('fir')))
-            self.text[8].update_string('MUNIÇÃO  : %s' % config.ground_weapon.ammo_type)
-            self.text[9].update_string('TROCAR')
+            self.text[2].update_string('TAMANHO DO PENTE      : %s   %s' % (config.ground_weapon.mag_size, self.compare_weapons('mag')))
+            self.text[3].update_string('TAXA DE FOGO      : %s   %s' % (config.ground_weapon.firerate, self.compare_weapons('fir')))
+            self.text[4].update_string('MUNIÇÃO  : %s' % config.ground_weapon.ammo_type)
+            self.text[5].update_string('TROCAR')
 
             x = 0
             for string in self.text:
