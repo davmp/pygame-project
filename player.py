@@ -89,7 +89,6 @@ class Player:
                         self.speed += 50
                         if self.speed > self.max_speed:
                             self.speed = self.max_speed
-
                 else:
                     if self.speed > 0:
                         if self.last_call == 0:
@@ -157,7 +156,8 @@ class Player:
                                 config.middle_slice.type == 'vdoor' or config.middle_slice.type == 'hdoor'):
                             config.middle_slice.sesam_luk_dig_op()
                         elif config.middle_slice_len <= config.tile_size and config.middle_slice.type == 'end' and not \
-                        config.player_states['fade']:
+                                config.player_states['fade']:
+                            print("changin levela")
                             config.player_states['fade'] = True
                             config.changing_level = True
                             sound.play_sound(self.change_level, 0)
@@ -170,7 +170,7 @@ class Player:
                 self.angle -= madd
                 config.player_angle = self.angle
 
-            if key[pygame.K_i] and self.inventory < 1:
+            if key[pygame.K_TAB] and self.inventory < 1:
                 if config.player_states['invopen']:
                     config.player_states['invopen'] = False
                     config.inv_strings_updated = False
@@ -178,22 +178,20 @@ class Player:
                     config.player_states['invopen'] = True
 
                 self.inventory += 1
-            elif not key[pygame.K_i]:
+            elif not key[pygame.K_TAB]:
                 self.inventory = 0
 
             if key[pygame.K_ESCAPE] and config.player_states['invopen']:
                 config.player_states['invopen'] = False
                 config.inv_strings_updated = False
                 self.dont_open_menu = True
-
             elif not key[pygame.K_ESCAPE] and not config.player_states['invopen']:
                 self.dont_open_menu = False
 
             if key[pygame.K_ESCAPE] and not self.dont_open_menu:
                 self.esc_pressed = True
-
             elif self.esc_pressed and not self.dont_open_menu:
-                config.menu_showing = True
+                config.in_game = False
                 self.esc_pressed = False
 
         if self.health > config.player_health:
@@ -245,7 +243,7 @@ class Player:
                     self.real_y = self.rect.y
 
         config.player_map_pos = [int(self.rect.centerx / config.tile_size),
-                                   int(self.rect.centery / config.tile_size)]
+                                 int(self.rect.centery / config.tile_size)]
 
         generator_check_list = [x for x in config.walkable_area if x.map_pos == config.player_map_pos]
         if generator_check_list:

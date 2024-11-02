@@ -58,3 +58,13 @@ class Canvas:
                     self.canvas.blit(self.shade[i], (0, self.height / 2 - self.shade[i].get_height() / 2))
         else:
             self.window.fill(colors.WHITE)
+
+            if config.ground_weapon:
+                groundslot = pygame.Surface((272, 80)).convert_alpha()
+                groundslot_rect = groundslot.get_rect()
+
+                pygame.draw.rect(
+                    surface=config.ground_weapon.subitemtexture,
+                    color=colors.WHITE,
+                    rect=(groundslot_rect.x, groundslot_rect.y + 5)
+                )

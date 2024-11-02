@@ -325,7 +325,6 @@ class Raycast:
         else:
             config.zbuffer.append(None)
 
-        # Middle ray info
         if ray_number == int(self.res / 2):
             config.middle_slice_len = wall_dist
             config.middle_slice = current_tile

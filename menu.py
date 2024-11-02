@@ -83,7 +83,7 @@ class Controller:
                     self.current_type = 'game'
                     self.current_menu = 'main'
                     config.current_level = 0
-                    config.menu_showing = False
+                    config.in_game = True
                     config.playing_new = False
                 elif self.newMenu.custom_button.get_clicked():
                     if config.clevels_list:
@@ -95,7 +95,7 @@ class Controller:
                     self.current_type = 'game'
                     self.current_menu = 'main'
                     config.current_level = 0
-                    config.menu_showing = False
+                    config.in_game = True
                     config.playing_customs = False
                 elif self.newMenu.tutorial_button.get_clicked():
                     self.newMenu.reset_inventory()
@@ -104,7 +104,7 @@ class Controller:
                     self.current_type = 'game'
                     self.current_menu = 'main'
                     config.current_level = 0
-                    config.menu_showing = False
+                    config.in_game = True
                     config.playing_tutorial = False
             elif self.current_menu == 'options':
                 self.optionsMenu.draw(self.canvas)
@@ -140,8 +140,8 @@ class Menu:
             posx=0,
             posy=0,
             string=title,
-            color=colors.BLACK,
-            size=120)
+            color=colors.LIGHTGRAY,
+            size=80)
         self.title.update_pos((config.actual_width / 2) - (self.title.layout.get_width() / 2) + 8, 20)
 
         self.background_image = None
@@ -254,7 +254,7 @@ class MainMenu(Menu):
 
 class NewMenu(Menu):
     def __init__(self, settings):
-        Menu.__init__(self, 'NEW GAME')
+        Menu.__init__(self, 'NOVO JOGO')
         self.new_button = Button((config.actual_width / 2, 200, 200, 60), "NOVO JOGO")
         self.custom_button = Button((config.actual_width / 2, 270, 200, 60), "MAPAS")
         self.tutorial_button = Button((config.actual_width / 2, 325, 200, 30), "TUTORIAL")
@@ -434,7 +434,7 @@ class ScoreMenu(Menu):
         self.middle_area = pygame.Surface((200, 300))
         self.middle_area.fill((180, 180, 180))
 
-        self.back_button = Button((config.actual_width / 2, 500, 200, 60), "Voltar")
+        self.back_button = Button((config.actual_width / 2, 540, 200, 60), "Voltar")
         self.score_testing = copy.copy(config.statistics)
 
         self.highlights = []
@@ -445,7 +445,7 @@ class ScoreMenu(Menu):
                 self.highlights.append(pygame.Surface((600, 30)).convert_alpha())
             self.highlights[i].fill((0, 0, 0, 20))
 
-        self.best_scores = ['MAIORES PONTUAÇÕES',
+        self.best_scores = ['MAIOR PONTUAÇÃO',
                             'ENTIDADES ABATIDAS : %s' % config.statistics['best enemies'],
                             'DANO CAUSADO : %s' % config.statistics['best ddealt'],
                             'DANO TOMADO : %s' % config.statistics['best dtaken'],
@@ -532,26 +532,26 @@ class ScoreMenu(Menu):
 class CreditsMenu(Menu):
     def __init__(self):
         Menu.__init__(self, 'CRÉDITOS')
-        self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
+        self.back_button = Button((config.actual_width / 2, 620, 200, 60), "VOLTAR")
 
         self.createdby = Text(
             posx=0,
             posy=0,
-            string='CRIADO POR',
+            string='DESENVOLVEDORES',
             font=config.font,
             color=colors.LIGHTGRAY,
-            size=24)
+            size=20)
         self.createdby.update_pos((config.actual_width / 2) - (self.createdby.layout.get_width() / 2) + 8, 130)
 
-        self.maxwellsalmon = Text(
+        self.daviscartezini = Text(
             posx=0,
             posy=0,
             string='DAVI COSTA SCARTEZINI',
             font=config.font,
             color=colors.DARKGRAY,
-            size=38)
-        self.maxwellsalmon.update_pos(
-            (config.actual_width / 2) - (self.maxwellsalmon.layout.get_width() / 2) + 8, 160)
+            size=28)
+        self.daviscartezini.update_pos(
+            (config.actual_width / 2) - (self.daviscartezini.layout.get_width() / 2) + 8, 160)
 
         self.musicby = Text(
             posx=0,
@@ -560,76 +560,88 @@ class CreditsMenu(Menu):
             color=colors.LIGHTGRAY,
             font=config.font,
             size=20)
-        self.musicby.update_pos((config.actual_width / 2) - (self.musicby.layout.get_width() / 2) + 8, 210)
+        self.musicby.update_pos((config.actual_width / 2) - (self.musicby.layout.get_width() / 2) + 8, 220)
 
-        self.eli = Text(
+        self.daviscartezini2 = Text(
             posx=0,
             posy=0,
             string='DAVI COSTA SCARTEZINI',
             color=colors.DARKGRAY,
             font=config.font,
-            size=30)
-        self.eli.update_pos((config.actual_width / 2) - (self.eli.layout.get_width() / 2) + 8, 240)
+            size=28)
+        self.daviscartezini2.update_pos((config.actual_width / 2) - (self.daviscartezini2.layout.get_width() / 2) + 8, 250)
 
         self.contributions = Text(
             posx=0,
             posy=0,
-            string='THANKS  TO',
+            string='HISTÓRIA E VÍDEOS',
             color=colors.LIGHTGRAY,
             font=config.font,
             size=20)
         self.contributions.update_pos(
-            (config.actual_width / 2) - (self.contributions.layout.get_width() / 2) + 8, 290)
+            (config.actual_width / 2) - (self.contributions.layout.get_width() / 2) + 8, 310)
 
-        self.contributors = Text(
+        self.davivaz = Text(
             posx=0,
             posy=0,
-            string='POELE,  OLE,  ROCKETTHEMINIFIG,  ANDY BOY,  J4CKINS',
-            color=colors.DARKGRAY,
+            string='DAVI VAZ',
             font=config.font,
-            size=20)
-        self.contributors.update_pos(
-            (config.actual_width / 2) - (self.contributors.layout.get_width() / 2) + 8, 320)
-        self.contributors2 = Text(
-            posx=0,
-            posy=0,
-            string='THEFATHOBBITS,  STARLITEPONY',
             color=colors.DARKGRAY,
-            font=config.font,
-            size=20)
-        self.contributors2.update_pos(
-            (config.actual_width / 2) - (self.contributors2.layout.get_width() / 2) + 8, 345)
+            size=28)
+        self.davivaz.update_pos(
+            (config.actual_width / 2) - (self.davivaz.layout.get_width() / 2) + 8, 340)
 
-        self.specialthanks = Text(
+        self.caio = Text(
             posx=0,
             posy=0,
-            string='THANKS  TO  THE  PYGAME  COMMUNITY  FOR  HELP  AND  MOTIVATION',
-            color=colors.DARKGRAY,
+            string='CAIO',
             font=config.font,
-            size=15)
-        self.specialthanks.update_pos(
-            (config.actual_width / 2) - (self.specialthanks.layout.get_width() / 2) + 8, 380)
+            color=colors.DARKGRAY,
+            size=28)
+        self.caio.update_pos(
+            (config.actual_width / 2) - (self.caio.layout.get_width() / 2) + 8, 380)
+
+        self.matheus = Text(
+            posx=0,
+            posy=0,
+            string='MATHEUS',
+            font=config.font,
+            color=colors.DARKGRAY,
+            size=28)
+        self.matheus.update_pos(
+            (config.actual_width / 2) - (self.matheus.layout.get_width() / 2) + 8, 420)
+
+        self.tiago = Text(
+            posx=0,
+            posy=0,
+            string='TIAGO',
+            font=config.font,
+            color=colors.DARKGRAY,
+            size=28)
+        self.tiago.update_pos(
+            (config.actual_width / 2) - (self.tiago.layout.get_width() / 2) + 8, 460)
 
         self.and_you = Text(
             posx=0,
             posy=0,
-            string='THANKS  TO  YOU  FOR  PLAYING!',
-            color=colors.GREEN,
+            string='OBRIGADO POR JOGAR!',
+            color=colors.DARKRED,
             font=config.font,
             size=22)
-        self.and_you.update_pos((config.actual_width / 2) - (self.and_you.layout.get_width() / 2) + 8, 410)
+        self.and_you.update_pos((config.actual_width / 2) - (self.and_you.layout.get_width() / 2) + 8, 550)
 
     def draw(self, canvas, show):
         self.back_button.draw(canvas)
         self.title.draw(canvas)
         self.createdby.draw(canvas)
         self.musicby.draw(canvas)
-        self.eli.draw(canvas)
         self.contributions.draw(canvas)
-        self.contributors.draw(canvas)
-        self.contributors2.draw(canvas)
-        self.specialthanks.draw(canvas)
-        self.maxwellsalmon.draw(canvas)
+        self.daviscartezini.draw(canvas)
+        self.davivaz.draw(canvas)
+        self.caio.draw(canvas)
+        self.matheus.draw(canvas)
+        self.tiago.draw(canvas)
+        self.daviscartezini2.draw(canvas)
 
         if show or config.statistics['playtime'] >= 120:
             self.and_you.draw(canvas)
@@ -651,7 +663,7 @@ class SupportSplash:
             size=19)
         self.title.update_pos((self.rect.width / 2) - (self.title.layout.get_width() / 2) + 2, 5)
 
-        self.pleas = ['Você está jogando A Casa', 'por mais de duas horas agora.  Eu',
+        self.pleas = [f'Você está jogando {config.title}', 'por mais de duas horas agora.  Eu',
                       'espero que você tenha gostado']
         self.texts = []
 

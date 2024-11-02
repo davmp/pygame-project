@@ -132,18 +132,30 @@ class Game:
         elif config.next_gun:
             config.next_gun.draw(self.canvas.canvas)
 
-        # Draw Inventory and effects
+        if config.inventory["ground"]:
+            text = Text(
+                posx=0,
+                posy=0,
+                string="Pressione 'E' para trocar de arma",
+                color=colors.BLACK,
+                font=config.font,
+                size=26
+            )
+            text.update_pos((config.actual_width / 2) - (text.layout.get_width() / 2), 480)
+            box = pygame.Surface(
+                (text.layout.get_width() + 6, text.layout.get_height() + 6)).convert_alpha()
+            box.fill((255, 255, 255, 180))
+            self.canvas.canvas.blit(box, (text.posx - 3, text.posy - 3))
+            text.draw(self.canvas.canvas)
+
         if config.player_states['invopen']:
             self.inventory.draw(self.canvas.canvas)
-        # EFFECTS.render(self.canvas.canvas)
 
         config.zbuffer = []
 
-        # Draw HUD and canvas
         self.canvas.window.blit(self.canvas.canvas, config.axes)
         self.hud.render(self.canvas.window)
 
-        # Draw tutorial strings
         if config.levels_list == config.tlevels_list:
             self.tutorial.control(self.canvas.window)
 
@@ -180,7 +192,7 @@ class Game:
                 self.menu.current_type = 'main'
                 self.menu.current_menu = 'score'
                 self.calculate_statistics()
-                config.menu_showing = True
+                config.in_game = False
                 config.current_level = 0
 
     def play(self):
@@ -201,14 +213,6 @@ class Game:
             color=colors.WHITE,
             size=48
         )
-        beta = Text(
-            posx=5,
-            posy=5,
-            string=f"{config.title.upper()} V{config.version}",
-            color=colors.WHITE,
-            size=48
-        )
-
         self.text.update_pos(config.actual_width / 2 - self.text.layout.get_width() / 2,
                              config.height / 2 - self.text.layout.get_height() / 2)
 

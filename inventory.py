@@ -183,7 +183,6 @@ class Inventory:
                 self.menudraw = True
                 self.mousepos = pygame.mouse.get_pos()
 
-
         # Mouse on ammo1 - run function
         elif self.ammoslot1_rect.collidepoint(pygame.mouse.get_pos()):
             self.ammo_selection(1, canvas)
@@ -269,7 +268,6 @@ class Inventory:
                     string.update_pos(self.mousepos[0] + 5, self.mousepos[1] + x * 20 + 12)
                 string.draw(canvas)
                 x += 1
-
         else:
             self.menu_rect.bottomleft = self.mousepos
 

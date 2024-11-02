@@ -222,7 +222,6 @@ next_gun = None
 prev_gun = None
 gun_list = []
 ground_weapon = None
-"graphics"
 
 
 """
@@ -243,9 +242,8 @@ max_ammo = {}
 inventory = {
     'primary': None,
     'secondary': None,
-    'melee': None
+    'melee': None,
+    'ground': None
 }
 item_types = []
 inv_strings_updated = False
-
-temp = []

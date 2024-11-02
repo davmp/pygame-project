@@ -455,7 +455,7 @@ class Generator:
         config.glevels_list.append(Level({
             'items': translated_items,
             'ground_color': random.choice(self.ground_colors),
-            'sky_color': random.choice(self.sky_colors),
+            'sky_color': colors.BLACK,
             'array': newarray,
             'lvl_number': len(config.glevels_list),
             'npcs': translated_npcs,

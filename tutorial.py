@@ -10,7 +10,7 @@ class Controller:
         self.text = Text(
             posx=0,
             posy=0,
-            string="scartezini",
+            string="",
             color=colors.BLACK,
             font=config.font,
             size=26
@@ -70,7 +70,7 @@ class Controller:
         }
 
         self.gauss = {
-            'string': "ABRA O INVENTÁRIO COM 'I' ou 'Tab'",
+            'string': "ABRA O INVENTÁRIO COM 'Tab'",
             'tiles': [[3, 3]]
         }
 
