@@ -85,8 +85,7 @@ class Generator:
                                 17]
 
         self.ground_colors = [
-            colors.GRAY, colors.LIGHTGRAY, colors.DARKGRAY,
-            colors.DARKRED, colors.DARKGREEN
+            colors.GRAY, colors.LIGHTGRAY, colors.DARKGRAY
         ]
         self.sky_colors = [
             colors.GRAY, colors.LIGHTGRAY, colors.LIGHTBLUE,
@@ -455,7 +454,7 @@ class Generator:
         config.glevels_list.append(Level({
             'items': translated_items,
             'ground_color': random.choice(self.ground_colors),
-            'sky_color': colors.BLACK,
+            'sky_color': random.choice(self.ground_colors),
             'array': newarray,
             'lvl_number': len(config.glevels_list),
             'npcs': translated_npcs,

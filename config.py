@@ -198,10 +198,11 @@ player_states = {
     'fade': False,
     'black': False,
     'title': False,
-    'cspeed': 0
+    'cspeed': 0,
 }
 player = None
 last_player_map_pos = None
+screen_shake = 0
 
 items = []
 
@@ -210,7 +211,6 @@ items = []
 """
 texture_darken = 100
 texture_list = []
-
 
 """
 --> Configurações das Armas
@@ -223,7 +223,6 @@ prev_gun = None
 gun_list = []
 ground_weapon = None
 
-
 """
 --> Configurações dos NPCs
 """
@@ -232,7 +231,6 @@ ignore_player = False
 npc_list = []
 npc_types = []
 npc_sounds = []
-
 
 """
 --> Configurações do Inventário

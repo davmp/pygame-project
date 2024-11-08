@@ -155,11 +155,9 @@ class Player:
                         if config.middle_slice_len <= config.tile_size * 1.5 and (
                                 config.middle_slice.type == 'vdoor' or config.middle_slice.type == 'hdoor'):
                             config.middle_slice.sesam_luk_dig_op()
-                        elif config.middle_slice_len <= config.tile_size and config.middle_slice.type == 'end' and not \
-                                config.player_states['fade']:
-                            print("changin levela")
+                        elif config.middle_slice_len <= config.tile_size and config.middle_slice.type == 'end' and not config.player_states['fade']:
                             config.player_states['fade'] = True
-                            config.changing_level = True
+                            config.level_transition = True
                             sound.play_sound(self.change_level, 0)
 
                 madd = self.mouse.get_rel()[0] * self.sensitivity

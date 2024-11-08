@@ -260,7 +260,7 @@ class NewMenu(Menu):
         self.tutorial_button = Button((config.actual_width / 2, 325, 200, 30), "TUTORIAL")
         self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
-        self.loading = Text(0, 0, "CARREGANDO...", colors.BLACK, 74)
+        self.loading = Text(0, 0, "CARREGANDO...", colors.WHITE, 74)
         self.loading.update_pos((config.actual_width / 2) - (self.loading.layout.get_width() / 2) + 8,
                                 (config.height / 2) - (self.loading.layout.get_height() / 2))
 

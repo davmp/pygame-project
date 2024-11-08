@@ -1487,7 +1487,7 @@ class Loader:
             config.shade_visibility = config.levels_list[config.current_level].shade_visibility
 
         if config.current_level > 0:
-            config.changing_level = False
+            config.level_transition = False
             config.player_states['fade'] = True
         else:
             config.player_states['fade'] = True

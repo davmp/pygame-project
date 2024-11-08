@@ -19,6 +19,7 @@ from text import Text
 from canvas import Canvas
 import menu as Menu
 import tutorial as Tutorial
+from effects import Effects
 
 
 class Game:
@@ -40,6 +41,7 @@ class Game:
         self.hud = None
         self.tutorial = None
         self.menu = None
+        self.effects = None
 
     @staticmethod
     def calculate_statistics():
@@ -150,6 +152,7 @@ class Game:
 
         if config.player_states['invopen']:
             self.inventory.draw(self.canvas.canvas)
+        self.effects.render(self.canvas.canvas)
 
         config.zbuffer = []
 
@@ -177,8 +180,8 @@ class Game:
             elif (config.current_level == len(config.levels_list) - 1 or
                   config.player_states['dead']) and self.loader.timer < 4 and not config.player_states['fade']:
                 if not config.player_states['dead'] and config.current_level == len(
-                        config.levels_list) - 1 and self.text.string != 'YOU  WON':
-                    self.text.update_string('YOU  WON')
+                        config.levels_list) - 1 and self.text.string != 'VOCÊ VENCEU':
+                    self.text.update_string('VOCÊ VENCEU')
                 elif config.player_states['dead'] and self.text.string != 'GAME  OVER':
                     self.text.update_string('GAME  OVER')
                 self.text.draw(self.canvas.window)
@@ -222,6 +225,7 @@ class Game:
         self.raycast = Raycast(self.canvas.canvas, self.canvas.window)
         self.inventory = Inventory({'bullet': 150, 'shell': 25, 'ferromag': 50})
         self.hud = HUD()
+        self.effects = Effects()
 
         self.loader.load_new_level(self.map, self.player)
 
