@@ -497,7 +497,7 @@ class Loader:
                     'zoom': 8,
                     'ammotype': 'shell',
                     'guntype': 'primary',
-                    'name': 'DB Shotgun'
+                    'name': 'Espingarda DB'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'shotgun_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'shotgun_shot2.ogg')),
@@ -525,7 +525,7 @@ class Loader:
                     'zoom': 2,
                     'ammotype': 'bullet',
                     'guntype': 'secondary',
-                    'name': 'Pistol'
+                    'name': 'Pistola'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'pistol_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'pistol_shot2.ogg')),
@@ -552,7 +552,7 @@ class Loader:
                     'zoom': 0,
                     'ammotype': None,
                     'guntype': 'melee',
-                    'name': 'Knife'
+                    'name': 'Faca'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing2.ogg')),
@@ -577,7 +577,7 @@ class Loader:
                     'zoom': 0,
                     'ammotype': None,
                     'guntype': 'melee',
-                    'name': 'Brass Knuckles'
+                    'name': 'Soqueira'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing2.ogg')),
@@ -602,7 +602,7 @@ class Loader:
                     'zoom': 8,
                     'ammotype': 'ferromag',
                     'guntype': 'primary',
-                    'name': 'Gauss rifle'
+                    'name': 'Rifle Gauss'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot2.ogg')),
@@ -630,7 +630,7 @@ class Loader:
                     'zoom': 1,
                     'ammotype': 'shell',
                     'guntype': 'secondary',
-                    'name': 'SG Pistol'
+                    'name': 'Pistola SG'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'sgp_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'sgp_shot2.ogg')),
@@ -658,7 +658,7 @@ class Loader:
                     'zoom': 0,
                     'ammotype': None,
                     'guntype': 'melee',
-                    'name': 'Light Knuckles'
+                    'name': 'Soqueira Leve'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing2.ogg')),
@@ -683,7 +683,7 @@ class Loader:
                     'zoom': 0,
                     'ammotype': None,
                     'guntype': 'melee',
-                    'name': 'Rampage Knuckles'
+                    'name': 'Soqueira de fúria'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing2.ogg')),
@@ -708,7 +708,7 @@ class Loader:
                     'zoom': 0,
                     'ammotype': None,
                     'guntype': 'melee',
-                    'name': 'Sharp Knife'
+                    'name': 'Faca Afiada'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing2.ogg')),
@@ -733,7 +733,7 @@ class Loader:
                     'zoom': 0,
                     'ammotype': None,
                     'guntype': 'melee',
-                    'name': 'Light Knife'
+                    'name': 'Faca Leve'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'knife_swing2.ogg')),
@@ -758,7 +758,7 @@ class Loader:
                     'zoom': 8,
                     'ammotype': 'shell',
                     'guntype': 'primary',
-                    'name': 'Modified Shotgun'
+                    'name': 'Espingarda Modificada'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'shotgun_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'shotgun_shot2.ogg')),
@@ -786,7 +786,7 @@ class Loader:
                     'zoom': 8,
                     'ammotype': 'shell',
                     'guntype': 'primary',
-                    'name': 'TB Shotgun'
+                    'name': 'Espingarda TB'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'shotgun_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'shotgun_shot2.ogg')),
@@ -844,7 +844,7 @@ class Loader:
                     'zoom': 6,
                     'ammotype': 'bullet',
                     'guntype': 'primary',
-                    'name': 'Ext Mag AK-47'
+                    'name': 'AK-47 Pente Alongado'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'AK_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'AK_shot2.ogg')),
@@ -874,7 +874,7 @@ class Loader:
                     'zoom': 6,
                     'ammotype': 'bullet',
                     'guntype': 'primary',
-                    'name': 'Camo AK-47'
+                    'name': 'AK-47 Camo'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'AK_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'AK_shot2.ogg')),
@@ -904,7 +904,7 @@ class Loader:
                     'zoom': 4,
                     'ammotype': 'bullet',
                     'guntype': 'primary',
-                    'name': 'Light AK-47'
+                    'name': 'AK-47 Leve'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'AK_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'AK_shot2.ogg')),
@@ -934,7 +934,7 @@ class Loader:
                     'zoom': 8,
                     'ammotype': 'ferromag',
                     'guntype': 'secondary',
-                    'name': 'Anomaly Pistol'
+                    'name': 'Pistola Anomalia'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot2.ogg')),
@@ -962,7 +962,7 @@ class Loader:
                     'zoom': 2,
                     'ammotype': 'bullet',
                     'guntype': 'secondary',
-                    'name': 'HP Pistol'
+                    'name': 'Pistola HP'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'hpp_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'hpp_shot2.ogg')),
@@ -989,7 +989,7 @@ class Loader:
                     'zoom': 9,
                     'ammotype': 'ferromag',
                     'guntype': 'primary',
-                    'name': 'Modded gauss'
+                    'name': 'Rifle Gauss Modificado'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot2.ogg')),
@@ -1017,7 +1017,7 @@ class Loader:
                     'zoom': 7,
                     'ammotype': 'ferromag',
                     'guntype': 'primary',
-                    'name': 'Bump gauss'
+                    'name': 'Rifle Gauss Bump'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'gauss_shot2.ogg')),
@@ -1045,7 +1045,7 @@ class Loader:
                     'zoom': 1,
                     'ammotype': 'shell',
                     'guntype': 'secondary',
-                    'name': 'Modded SGP'
+                    'name': 'SGP Modificada'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'sgp_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'sgp_shot2.ogg')),
@@ -1072,7 +1072,7 @@ class Loader:
                     'zoom': 1,
                     'ammotype': 'shell',
                     'guntype': 'secondary',
-                    'name': 'What??'
+                    'name': 'SGP Ultra'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'sgp_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'sgp_shot2.ogg')),
@@ -1099,7 +1099,7 @@ class Loader:
                     'zoom': 2,
                     'ammotype': 'bullet',
                     'guntype': 'secondary',
-                    'name': 'Auto pistol'
+                    'name': 'Pistola Automática'
                 }, {
                     'shot': [pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'pistol_shot1.ogg')),
                              pygame.mixer.Sound(os.path.join('assets', 'sounds', 'weapons', 'pistol_shot2.ogg')),

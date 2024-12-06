@@ -8,7 +8,6 @@ import random
 class Effects:
     def __init__(self):
         self.title = Text(0, 0, "None :-)", colors.BLACK, 60)
-        self.author = Text(0, 0, "None :-)", colors.BLACK, 40)
 
         self.hurt_intensity = 128
         self.dead_intensity = 0
@@ -131,17 +130,6 @@ class Effects:
             white_box = (pygame.Surface((self.title.layout.get_width() + 5, self.title.layout.get_height() + 5))
                          .convert_alpha())
             white_box.fill((255, 255, 255, 180))
-
-            self.author.update_string("BY  %s" % config.levels_list[config.current_level].author)
-            self.author.update_pos((config.actual_width / 2) - (self.author.layout.get_width() / 2) + 8, 262)
-
-            white_box2 = pygame.Surface(
-                (self.author.layout.get_width() + 5, self.author.layout.get_height() - 16)).convert_alpha()
-            white_box2.fill((255, 255, 255, 180))
-
-            if self.title_timer <= 3:
-                canvas.blit(white_box2, (self.author.posx - 7, self.author.posy + 3))
-                self.author.draw(canvas)
 
         elif config.levels_list == config.glevels_list:
             self.title.update_pos((config.actual_width / 2) - (self.title.layout.get_width() / 2) + 8, 200)

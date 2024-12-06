@@ -14,5 +14,3 @@ class Level:
         self.shade_visibility = stats['shade'][2]
         if 'name' in stats:
             self.name = stats['name']
-        if 'author' in stats:
-            self.author = stats['author']

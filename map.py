@@ -52,32 +52,25 @@ class Map:
         possible_item_positions = [x for x in wa if tuple(wa) not in item_positions]
         temp_possible_npc_positions = [x for x in wa if tuple(wa) not in npc_positions]
         possible_npc_positions = []
-        # Remove npc positions too close to the player
         for pos in temp_possible_npc_positions:
             x = abs(config.player_map_pos[0] - pos[0])
             y = abs(config.player_map_pos[1] - pos[1])
 
-            if math.sqrt(x ** 2 + y ** 2) >= 8:  # Length of vector between player and NPC
+            if math.sqrt(x ** 2 + y ** 2) >= 8:
                 possible_npc_positions.append(pos)
 
         for i in range(len(move_items)):
-            # print("Moved item from ", move_items[i][0])
             index = config.levels_list[config.current_level].items.index(move_items[i])  # Get item index
             config.levels_list[config.current_level].items[index] = (
                 (random.choice(possible_item_positions)), move_items[i][1])  # Choose new location for item
             possible_item_positions.remove(
                 list(config.levels_list[config.current_level].items[index][0]))  # Remove possible location
-            # print("to ", SETTINGS.levels_list[SETTINGS.current_level].items[index][0])
 
         for i in range(len(move_npcs)):
-            # print("Moved NPC from ", move_npcs[i][0])
             index = config.levels_list[config.current_level].npcs.index(move_npcs[i])
             config.levels_list[config.current_level].npcs[index] = (
                 (random.choice(possible_npc_positions)), move_npcs[i][1], move_npcs[i][2])
             possible_npc_positions.remove(list(config.levels_list[config.current_level].npcs[index][0]))
-            # print("to ", SETTINGS.levels_list[SETTINGS.current_level].npcs[index][0])
-
-        # print("This level has %s items and %s NPC's" % (len(SETTINGS.levels_list[SETTINGS.current_level].items), len(SETTINGS.levels_list[SETTINGS.current_level].npcs)))
 
 
 class Tile:

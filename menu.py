@@ -256,8 +256,7 @@ class NewMenu(Menu):
     def __init__(self, settings):
         Menu.__init__(self, 'NOVO JOGO')
         self.new_button = Button((config.actual_width / 2, 200, 200, 60), "NOVO JOGO")
-        self.custom_button = Button((config.actual_width / 2, 270, 200, 60), "MAPAS")
-        self.tutorial_button = Button((config.actual_width / 2, 325, 200, 30), "TUTORIAL")
+        self.tutorial_button = Button((config.actual_width / 2, 270, 200, 60), "TUTORIAL")
         self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
         self.loading = Text(0, 0, "CARREGANDO...", colors.WHITE, 74)
@@ -273,7 +272,6 @@ class NewMenu(Menu):
 
     def draw(self, canvas):
         self.new_button.draw(canvas)
-        self.custom_button.draw(canvas)
         self.tutorial_button.draw(canvas)
         self.back_button.draw(canvas)
         self.title.draw(canvas)
@@ -537,7 +535,7 @@ class CreditsMenu(Menu):
         self.createdby = Text(
             posx=0,
             posy=0,
-            string='DESENVOLVEDORES',
+            string='DESENVOLVEDOR E DESIGNER SONORO',
             font=config.font,
             color=colors.LIGHTGRAY,
             size=20)
@@ -548,84 +546,86 @@ class CreditsMenu(Menu):
             posy=0,
             string='DAVI COSTA SCARTEZINI',
             font=config.font,
-            color=colors.DARKGRAY,
+            color=colors.WHITE,
             size=28)
         self.daviscartezini.update_pos(
             (config.actual_width / 2) - (self.daviscartezini.layout.get_width() / 2) + 8, 160)
 
-        self.musicby = Text(
-            posx=0,
-            posy=0,
-            string='MUSICA POR',
-            color=colors.LIGHTGRAY,
-            font=config.font,
-            size=20)
-        self.musicby.update_pos((config.actual_width / 2) - (self.musicby.layout.get_width() / 2) + 8, 220)
-
-        self.daviscartezini2 = Text(
-            posx=0,
-            posy=0,
-            string='DAVI COSTA SCARTEZINI',
-            color=colors.DARKGRAY,
-            font=config.font,
-            size=28)
-        self.daviscartezini2.update_pos((config.actual_width / 2) - (self.daviscartezini2.layout.get_width() / 2) + 8, 250)
-
         self.contributions = Text(
             posx=0,
             posy=0,
-            string='HISTÓRIA E VÍDEOS',
+            string='HISTÓRIA, VÍDEOS E TEXTURAS',
             color=colors.LIGHTGRAY,
             font=config.font,
             size=20)
         self.contributions.update_pos(
-            (config.actual_width / 2) - (self.contributions.layout.get_width() / 2) + 8, 310)
+            (config.actual_width / 2) - (self.contributions.layout.get_width() / 2) + 8, 230)
 
         self.davivaz = Text(
             posx=0,
             posy=0,
-            string='DAVI VAZ',
+            string='DAVI VAZ MORAES',
             font=config.font,
-            color=colors.DARKGRAY,
+            color=colors.WHITE,
             size=28)
         self.davivaz.update_pos(
-            (config.actual_width / 2) - (self.davivaz.layout.get_width() / 2) + 8, 340)
+            (config.actual_width / 2) - (self.davivaz.layout.get_width() / 2) + 8, 260)
 
         self.caio = Text(
             posx=0,
             posy=0,
-            string='CAIO',
+            string='CAIO BARBOSA DE LIMA',
             font=config.font,
-            color=colors.DARKGRAY,
+            color=colors.WHITE,
             size=28)
         self.caio.update_pos(
-            (config.actual_width / 2) - (self.caio.layout.get_width() / 2) + 8, 380)
+            (config.actual_width / 2) - (self.caio.layout.get_width() / 2) + 8, 300)
 
         self.matheus = Text(
             posx=0,
             posy=0,
-            string='MATHEUS',
+            string='MATHEUS ONIVAL ARAÚDO DE MORARES',
             font=config.font,
-            color=colors.DARKGRAY,
+            color=colors.WHITE,
             size=28)
         self.matheus.update_pos(
-            (config.actual_width / 2) - (self.matheus.layout.get_width() / 2) + 8, 420)
+            (config.actual_width / 2) - (self.matheus.layout.get_width() / 2) + 8, 340)
 
         self.tiago = Text(
             posx=0,
             posy=0,
-            string='TIAGO',
+            string='LUCAS ALMEIDA DE SILVA',
             font=config.font,
-            color=colors.DARKGRAY,
+            color=colors.WHITE,
             size=28)
         self.tiago.update_pos(
-            (config.actual_width / 2) - (self.tiago.layout.get_width() / 2) + 8, 460)
+            (config.actual_width / 2) - (self.tiago.layout.get_width() / 2) + 8, 380)
+
+        self.gustavo = Text(
+            posx=0,
+            posy=0,
+            string='GUSTAVO COSTA JACINTO',
+            font=config.font,
+            color=colors.WHITE,
+            size=28)
+        self.gustavo.update_pos(
+            (config.actual_width / 2) - (self.gustavo.layout.get_width() / 2) + 8, 420)
+
+        self.alberto = Text(
+            posx=0,
+            posy=0,
+            string='ALBERTO SOARES DE FONSECA',
+            font=config.font,
+            color=colors.WHITE,
+            size=28)
+        self.alberto.update_pos(
+            (config.actual_width / 2) - (self.alberto.layout.get_width() / 2) + 8, 460)
 
         self.and_you = Text(
             posx=0,
             posy=0,
             string='OBRIGADO POR JOGAR!',
-            color=colors.DARKRED,
+            color=colors.RED,
             font=config.font,
             size=22)
         self.and_you.update_pos((config.actual_width / 2) - (self.and_you.layout.get_width() / 2) + 8, 550)
@@ -634,14 +634,14 @@ class CreditsMenu(Menu):
         self.back_button.draw(canvas)
         self.title.draw(canvas)
         self.createdby.draw(canvas)
-        self.musicby.draw(canvas)
         self.contributions.draw(canvas)
         self.daviscartezini.draw(canvas)
         self.davivaz.draw(canvas)
         self.caio.draw(canvas)
         self.matheus.draw(canvas)
         self.tiago.draw(canvas)
-        self.daviscartezini2.draw(canvas)
+        self.gustavo.draw(canvas)
+        self.alberto.draw(canvas)
 
         if show or config.statistics['playtime'] >= 120:
             self.and_you.draw(canvas)
