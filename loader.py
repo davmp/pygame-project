@@ -1435,9 +1435,7 @@ class Loader:
         config.fov = settings['fov']
         config.sensitivity = settings['sensitivity']
         config.volume = settings['volume']
-        config.music_volume = settings['music volume']
-        config.resolution = settings['graphics'][0]
-        config.render = settings['graphics'][1]
+        print(settings['volume'])
 
         with open(os.path.join('data', 'statistics.dat'), 'rb') as stats_file:
             stats = pickle.load(stats_file)

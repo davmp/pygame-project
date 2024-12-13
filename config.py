@@ -9,7 +9,6 @@ current_level = 0
 fps = 31
 mode = 1
 volume = 1
-music_volume = 1
 in_game = False
 
 current_level_size = None

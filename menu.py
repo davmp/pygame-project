@@ -85,12 +85,6 @@ class Controller:
                     config.current_level = 0
                     config.in_game = True
                     config.playing_new = False
-                elif self.newMenu.custom_button.get_clicked():
-                    if config.clevels_list:
-                        self.newMenu.reset_inventory()
-                        config.playing_customs = True
-                    else:
-                        self.newMenu.no_levels_on = True
                 elif config.playing_customs:
                     self.current_type = 'game'
                     self.current_menu = 'main'
@@ -334,56 +328,45 @@ class OptionsMenu(Menu):
         self.onoff = ['LIGADO', 'DESLIGADO']
 
         self.strings_to_data = {
-            'graphics': [(100, 10), (140, 12), (175, 14)],
             'fov': [50, 60, 70],
             'sensitivity': [0.15, 0.25, 0.35],
             'volume': [0.1, 0.5, 1],
-            'music volume': [0, 0.5, 1],
-            'fullscreen': [True, False], }
+            'fullscreen': [True, False]
+        }
 
-        self.graphics_index = self.strings_to_data['graphics'].index(settings['graphics'])
         self.fov_index = self.strings_to_data['fov'].index(settings['fov'])
         self.sens_index = self.strings_to_data['sensitivity'].index(settings['sensitivity'])
         self.vol_index = self.strings_to_data['volume'].index(settings['volume'])
-        self.music_index = self.strings_to_data['music volume'].index(settings['music volume'])
         self.fs_index = self.strings_to_data['fullscreen'].index(settings['fullscreen'])
 
         self.update_strings()
 
     def update_strings(self):
-        self.graphics_button = Button((config.actual_width / 2, 150, 300, 30),
-                                      "GRÁFICOS: %s" % self.strings[self.graphics_index])
-        self.fov_button = Button((config.actual_width / 2, 200, 300, 30),
+        width, height = 350, 30
+
+        self.fov_button = Button((config.actual_width / 2, 150, width, height),
                                  "FOV: %s" % self.degrees[self.fov_index])
-        self.sensitivity_button = Button((config.actual_width / 2, 250, 300, 30),
+        self.sensitivity_button = Button((config.actual_width / 2, 200, width, height),
                                          "SENSIBILIDADE: %s" % self.strings[self.sens_index])
-        self.volume_button = Button((config.actual_width / 2, 300, 300, 30),
-                                    "VOLUME PRINCIPAL: %s" % self.strings[self.vol_index])
-        self.music_button = Button((config.actual_width / 2, 350, 300, 30),
-                                   "VOLUME DA MÚSICA: %s" % self.music_strings[self.music_index])
+        self.volume_button = Button((config.actual_width / 2, 250, width, height),
+                                    "VOLUME: %s" % self.strings[self.vol_index])
         self.back_button = Button((config.actual_width / 2, 500, 200, 60), "VOLTAR")
 
         self.restart = Text(0, 0, 'REINICIE O JOGO PARA APLICAR AS MUDANÇAS', colors.LIGHTGRAY, 20)
         self.restart.update_pos((config.actual_width / 2) - (self.restart.layout.get_width() / 2), 580)
 
         self.current_settings = {
-            'graphics': self.strings_to_data['graphics'][self.graphics_index],
             'fov': self.strings_to_data['fov'][self.fov_index],
             'sensitivity': self.strings_to_data['sensitivity'][self.sens_index],
             'volume': self.strings_to_data['volume'][self.vol_index],
-            'music volume': self.strings_to_data['music volume'][self.music_index],
-            'fullscreen': self.strings_to_data['fullscreen'][self.fs_index], }
+            'fullscreen': self.strings_to_data['fullscreen'][self.fs_index]
+        }
+        config.volume = self.strings_to_data['volume'][self.vol_index]
 
         self.save = True
 
     def control_options(self):
-        if self.graphics_button.get_clicked():
-            self.graphics_index += 1
-            if self.graphics_index >= len(self.strings):
-                self.graphics_index = 0
-            self.update_strings()
-
-        elif self.fov_button.get_clicked():
+        if self.fov_button.get_clicked():
             self.fov_index += 1
             if self.fov_index >= len(self.degrees):
                 self.fov_index = 0
@@ -401,18 +384,10 @@ class OptionsMenu(Menu):
                 self.vol_index = 0
             self.update_strings()
 
-        elif self.music_button.get_clicked():
-            self.music_index += 1
-            if self.music_index >= len(self.music_strings):
-                self.music_index = 0
-            self.update_strings()
-
     def draw(self, canvas):
-        self.graphics_button.draw(canvas)
         self.fov_button.draw(canvas)
         self.sensitivity_button.draw(canvas)
         self.volume_button.draw(canvas)
-        self.music_button.draw(canvas)
         self.back_button.draw(canvas)
         self.title.draw(canvas)
         self.restart.draw(canvas)

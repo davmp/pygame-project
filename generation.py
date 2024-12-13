@@ -85,11 +85,12 @@ class Generator:
                                 17]
 
         self.ground_colors = [
-            colors.GRAY, colors.LIGHTGRAY, colors.DARKGRAY
+            colors.GRAY, colors.DARKGRAY
         ]
         self.sky_colors = [
-            colors.GRAY, colors.LIGHTGRAY, colors.LIGHTBLUE,
-            colors.BLUE, colors.LIGHTGREEN
+            # colors.GRAY, colors.LIGHTGRAY, colors.LIGHTBLUE,
+            # colors.BLUE, colors.LIGHTGREEN
+            colors.GRAY, colors.DARKGRAY
         ]
         self.shade_colors = [(0, 0, 0, 255), (255, 255, 255, 255)]
 

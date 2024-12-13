@@ -29,8 +29,8 @@ class Game:
         pygame.display.set_mode((1, 1))
 
         self.loader = Loader()
-        self.music = Music()
 
+        self.music = None
         self.generator = None
         self.text = None
         self.map = None
@@ -182,8 +182,14 @@ class Game:
                 if not config.player_states['dead'] and config.current_level == len(
                         config.levels_list) - 1 and self.text.string != 'VOCÊ VENCEU':
                     self.text.update_string('VOCÊ VENCEU')
+                    self.text.update_pos(config.actual_width / 2 - self.text.layout.get_width() / 2,
+                                         config.height / 2 - self.text.layout.get_height() / 2)
+
                 elif config.player_states['dead'] and self.text.string != 'GAME  OVER':
                     self.text.update_string('GAME  OVER')
+                    self.text.update_pos(config.actual_width / 2 - self.text.layout.get_width() / 2,
+                                         config.height / 2 - self.text.layout.get_height() / 2)
+
                 self.text.draw(self.canvas.window)
                 if not config.won:
                     self.loader.timer = 0
@@ -202,6 +208,8 @@ class Game:
         self.loader.load_resources()
         self.loader.load_entities()
         self.loader.load_custom_levels()
+
+        self.music = Music()
 
         self.generator = Generator()
         self.generator.generate_levels(1, 2)
